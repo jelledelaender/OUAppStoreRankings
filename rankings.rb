@@ -2,6 +2,9 @@ require 'net/http'
 require 'uri'
 require "resolv-replace.rb"
 require 'json'
+require 'date'
+
+
 
 def download url 
 
@@ -32,8 +35,52 @@ def download url
   end
 end
 
-url = "https://sensortower.com/api/ios/rankings/get_category_rankings?category=0&country=BE&date=2020-07-26T00%3A00%3A00.000Z&device=IPHONE&limit=2&offset=0"
 
-data = download(url)
+def process_date date
+  puts date
+ end
 
-puts "Data #{data}"
+
+def main
+  ## FROM ARGS...
+  start_date_input = "2020-07-25"
+  end_date_input = "2020-07-25"
+
+  begin
+    start_date = Date.parse start_date_input
+    end_date = Date.parse end_date_input
+  rescue Exception => e
+   puts "Exception: #{e}"
+   exit
+  end
+
+  if end_date < start_date
+    puts "EndDate is before startDate"
+    exit
+  end
+
+  ## Start
+
+  puts "StartDate: #{start_date}"
+  puts "EndDate: #{end_date}"
+  puts "-------------"
+
+  date = start_date
+
+  while date <= end_date
+    process_date date
+    date = date.next_day
+  end
+
+end
+
+
+
+
+# url = "https://sensortower.com/api/ios/rankings/get_category_rankings?category=0&country=BE&date=2020-07-26T00%3A00%3A00.000Z&device=IPHONE&limit=2&offset=0"
+
+# data = download(url)
+
+# puts "Data #{data}"
+
+main
