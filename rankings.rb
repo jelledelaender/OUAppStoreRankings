@@ -4,10 +4,7 @@ require "resolv-replace.rb"
 require 'json'
 require 'date'
 
-
-
 def download url 
-
   uri = URI.parse(url)
   http = Net::HTTP.new(uri.host, uri.port)
   http.read_timeout = 15
@@ -30,21 +27,32 @@ def download url
       puts "Redirect dedetected: #{location}"
       download location
     else # Invalid HTTP Code
-      puts "Invalid HTTP Code: #{res.code}"
+      puts "Invalid HTTP Code: #{res.code}: #{res.body}"
       nil
   end
 end
 
 
 def process_date date
-  puts date
- end
+  puts "Loading data for #{date}"
+
+  url = "https://sensortower.com/api/ios/rankings/get_category_rankings?category=0&country=BE&date=#{date}T00%3A00%3A00.000Z&device=IPHONE&limit=2&offset=0"
+  data = download(url)
+
+  if data == nil
+    return nil
+  end
+
+  ## Process data - dumb in DB to be processed
+  puts "Data #{data}"
+
+end
 
 
 def main
   ## FROM ARGS...
-  start_date_input = "2020-07-25"
-  end_date_input = "2020-07-25"
+  start_date_input = "2020-03-25"
+  end_date_input = "2020-03-25"
 
   begin
     start_date = Date.parse start_date_input
@@ -73,14 +81,5 @@ def main
   end
 
 end
-
-
-
-
-# url = "https://sensortower.com/api/ios/rankings/get_category_rankings?category=0&country=BE&date=2020-07-26T00%3A00%3A00.000Z&device=IPHONE&limit=2&offset=0"
-
-# data = download(url)
-
-# puts "Data #{data}"
 
 main
