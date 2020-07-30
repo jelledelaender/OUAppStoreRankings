@@ -50,10 +50,14 @@ class DataProcessor
       app["rating_count_for_current_version"],
       app["canonical_country"],
       app["categories"].to_s,
-      app["url"]
+      app["url"],
+      app["support_url"],
+      app["website_url"],
+      app["privacy_policy_url"],
+      app["eula_url"]
     ]
 
-    @db.execute "insert into apps values (?,?,?,?,?,?,?,?,?,?,?,?)", db_structure
+    @db.execute "insert into apps values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", db_structure
 
   end
 
