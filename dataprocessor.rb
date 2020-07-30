@@ -59,10 +59,17 @@ class DataProcessor
       app["release_date"],
       app["updated_date"],
       app["humanized_worldwide_last_month_downloads"]["downloads"],
-      app["humanized_worldwide_last_month_revenue"]["revenue"]
+      app["humanized_worldwide_last_month_revenue"]["revenue"],
+      app["price"],
+      (app["in_app_purchases"] ? 1 : 0),   
+      (app["shows_ads"] ? 1 : 0),
+      (app["buys_ads"] ? 1 : 0),
+      (app["apple_watch_enabled"] ? 1 : 0),
+      (app["imessage_enabled"] ? 1 : 0),
+      app["icon_url"]
     ]
 
-    @db.execute "insert into apps values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", db_structure
+    @db.execute "insert into apps values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", db_structure
 
   end
 
