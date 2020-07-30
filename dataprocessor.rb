@@ -46,7 +46,7 @@ class DataProcessor
       app["version"],
       app["rating"],
       app["rating_for_current_version"],
-      app["rating_count"],
+      app["global_rating_count"],
       app["rating_count_for_current_version"],
       app["canonical_country"],
       app["categories"].to_s,
