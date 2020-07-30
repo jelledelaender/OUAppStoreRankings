@@ -49,7 +49,7 @@ class DataProcessor
       app["rating_count"],
       app["rating_count_for_current_version"],
       app["canonical_country"],
-      app["categories"],
+      app["categories"].to_s,
       app["url"]
     ]
 
