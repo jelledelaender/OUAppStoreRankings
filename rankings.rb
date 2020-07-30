@@ -44,15 +44,31 @@ def process_date date
   end
 
   ## Process data - dumb in DB to be processed
-  puts "Data #{data}"
+  if data.kind_of?(Array)
+    process_array_with_apps data
+  else
+    puts "Expected Array. Received data #{data}"
+  end
 
 end
 
+def process_array_with_apps list
+  list.each do |item|
+    if item.kind_of?(Array)
+      process_array_with_apps item
+    elsif item.kind_of?(Hash)
+      puts "HASH: #{item}"
+      exit
+    else
+      puts "Unexpected item: #{item}"
+    end
+  end
+end
 
 def main
   ## FROM ARGS...
-  start_date_input = "2020-03-25"
-  end_date_input = "2020-03-25"
+  start_date_input = "2020-07-25"
+  end_date_input = "2020-07-26"
 
   begin
     start_date = Date.parse start_date_input
