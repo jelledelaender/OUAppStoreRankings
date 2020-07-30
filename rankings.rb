@@ -1,5 +1,7 @@
 require 'date'
 load "dataprocessor.rb"
+require "sqlite3"
+
 
 def main
   ## FROM ARGS...
@@ -27,10 +29,14 @@ def main
 
   date = start_date
 
-  dataProcessor = DataProcessor.new
+  db = SQLite3::Database.new "OURanking.sqlite"
+  db.execute "delete from apps" ## Debugging - emptying data set
+
 
   while date <= end_date
-    dataProcessor.process_date date
+    dataProcessor = DataProcessor.new(db, date)
+    dataProcessor.process
+    
     date = date.next_day
   end
 
