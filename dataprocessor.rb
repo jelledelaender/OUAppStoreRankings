@@ -41,6 +41,7 @@ class DataProcessor
     db_structure = [
       @date.to_s,
       app["app_id"],
+      app["os"],
       app["name"],
       app["rank"],
       app["version"],
@@ -54,10 +55,14 @@ class DataProcessor
       app["support_url"],
       app["website_url"],
       app["privacy_policy_url"],
-      app["eula_url"]
+      app["eula_url"],
+      app["release_date"],
+      app["updated_date"],
+      app["humanized_worldwide_last_month_downloads"]["downloads"],
+      app["humanized_worldwide_last_month_revenue"]["revenue"]
     ]
 
-    @db.execute "insert into apps values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", db_structure
+    @db.execute "insert into apps values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", db_structure
 
   end
 
