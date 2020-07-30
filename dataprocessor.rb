@@ -1,6 +1,9 @@
 load "downloader.rb"
 
 class DataProcessor
+  @@count = 50
+
+
 
   def initialize(db, date)
     @db = db
@@ -9,41 +12,47 @@ class DataProcessor
 
   def process
     puts "Loading data for #{@date}"
+
+    process_for_device "iphone"
+    process_for_device "ipad"
+  end
+
+  def process_for_device device
+    puts "Loading data for #{@date} device #{device} (top #{@@count})"
   
-    data = Downloader.get_data_for_date @date
+    data = Downloader.get_data_for_date(@date, device, @@count)
     if data == nil
       return nil
     end
   
     ## Process data - dumb in DB to be processed
     if data.kind_of?(Array)
-      process_array_with_apps data
+      process_array_with_apps(data, device)
     else
       puts "Expected Array. Received data #{data}"
     end
   
   end
   
-  def process_array_with_apps list
+  def process_array_with_apps(list, device)
     list.each do |item|
-      if item.kind_of?(Array)
-        process_array_with_apps item
-      elsif item.kind_of?(Hash)
-        process_app item
-      else
-        puts "Unexpected item: #{item}"
-      end
+      process_app(item[0], "free", device)
+      process_app(item[1], "paid", device)
+      process_app(item[2], "grossing", device)
     end
   end
 
-  def process_app app
+  def process_app(app, category, device)
    
+    #puts "App: #{app}"
+
     db_structure = [
       @date.to_s,
       app["app_id"],
-      app["os"],
-      app["name"],
+      category,
+      device,
       app["rank"],
+      app["name"],
       app["version"],
       app["rating"],
       app["rating_for_current_version"],
@@ -69,7 +78,7 @@ class DataProcessor
       app["icon_url"]
     ]
 
-    @db.execute "insert into apps values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", db_structure
+    @db.execute "insert into apps values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", db_structure
 
   end
 

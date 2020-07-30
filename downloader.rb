@@ -34,8 +34,8 @@ class Downloader
     end
   end
 
-  def self.get_data_for_date date
-    url = "https://sensortower.com/api/ios/rankings/get_category_rankings?category=0&country=BE&date=#{date}T00%3A00%3A00.000Z&device=IPHONE&limit=2&offset=0"
+  def self.get_data_for_date(date, device, count)
+    url = "https://sensortower.com/api/ios/rankings/get_category_rankings?category=0&country=BE&date=#{date}T00%3A00%3A00.000Z&device=#{device}&limit=#{count}&offset=0"
     download(url)
   end
 
