@@ -53,6 +53,7 @@ def main
     date = date.next_day
   end
 
+  puts "Finished"
 end
 
 main
