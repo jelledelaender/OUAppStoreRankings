@@ -4,19 +4,21 @@ require "sqlite3"
 
 def main
   ## Default values
-  number_of_days = 5;
+  number_of_days = 5
   db_location = "OURanking.sqlite"
+  clear_database = false
 
   ## Loading data from arguments
   arg_length = ARGV.length
-  if arg_length < 1 || arg_length > 2
+  if arg_length < 1 || arg_length > 3
     puts "Incorrect usage."
-    puts "Usage: ruby rankings.rb <number_of_days> <optional: DB Location>"
+    puts "Usage: ruby rankings.rb <number_of_days> <optional: Clear database {true/false}> <optional: DB Location>"
     exit
   end
 
   number_of_days = ARGV[0].to_i
-  db_location = ARGV[1] if arg_length > 1
+  clear_database = (ARGV[1] == "true") if arg_length > 1
+  db_location = ARGV[2] if arg_length > 2
 
   ## Valiating inputs
   end_date = Date.today.prev_day
@@ -38,7 +40,10 @@ def main
   puts "-------------"
 
   db = SQLite3::Database.new db_location
-  db.execute "delete from apps" ## Debugging - emptying data set
+  if clear_database
+    puts "Clearing database"
+    db.execute "delete from apps" 
+  end
 
   date = start_date
   while date <= end_date
