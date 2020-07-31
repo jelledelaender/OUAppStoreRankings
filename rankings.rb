@@ -1,5 +1,5 @@
 require 'date'
-load "dataprocessor.rb"
+load "lib/dataprocessor.rb"
 require "sqlite3"
 
 def main

@@ -1,9 +1,7 @@
-load "downloader.rb"
+load "lib/downloader.rb"
 
 class DataProcessor
   @@count = 50
-
-
 
   def initialize(db, date)
     @db = db
