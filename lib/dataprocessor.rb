@@ -18,6 +18,11 @@ class DataProcessor
   def process_for_device device
     puts "Loading data for #{@date} device #{device} (top #{@@count})"
   
+    ## Delete old data for date - device
+    puts "Deleting older entries for #{@date} and device #{device}"
+    @db.execute "delete from apps where device = ? and date = ?", device, @date.to_s
+
+  
     data = Downloader.get_data_for_date(@date, device, @@count)
     if data == nil
       return nil
@@ -76,7 +81,7 @@ class DataProcessor
       app["icon_url"]
     ]
 
-    @db.execute "replace into apps values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", db_structure
+    @db.execute "insert into apps values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", db_structure
 
   end
 
