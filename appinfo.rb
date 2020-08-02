@@ -22,7 +22,7 @@ def main
   db = SQLite3::Database.new db_location
   db.results_as_hash = true
 
-  result = db.query( "SELECT name, count(*) as times_seen_in_database, * FROM apps WHERE app_id = ? LIMIT 1", app_id)
+  result = db.query( "SELECT name, count(*) as times_seen_in_database, min(rank) as min_rating, avg(rank) as avg_rating, max(rank) as max_rating, * FROM apps WHERE app_id = ? ORDER BY date DESC LIMIT 1", app_id)
 
   result.each do |u|
     u.keys.each do |key|
