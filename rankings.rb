@@ -4,7 +4,7 @@ require "sqlite3"
 
 def main
   ## Default values
-  number_of_days = 5
+  number_of_days = 7
   db_location = "OURanking.sqlite"
   clear_database = false
 
