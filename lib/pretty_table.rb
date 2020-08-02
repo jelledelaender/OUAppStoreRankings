@@ -16,6 +16,12 @@ class PrettyTable
   end
 
   def print
+    if @data.length == 0
+      puts "No data to show"
+      return
+    end
+
+
    columns = @labels.each_with_object({}) { |(col,label),h|
      h[col] = { label: label,
                 width: [@data.map { |g| g[col].size }.max, label.size].max }
