@@ -39,8 +39,10 @@ class PrettyTable
   def write_line(h, columns) 
    str = h.keys.map { |k| 
      
-     if columns[k] != nil 
-       h[k].ljust(columns[k][:width]) 
+     if columns[k] != nil && k == "name"
+       h[k].ljust(columns[k][:width]) ## Name field left allignment
+     elsif columns[k] != nil
+      h[k].rjust(columns[k][:width])  ## All fields right allignment
      else
        nil
      end 
