@@ -1,4 +1,5 @@
 require "sqlite3"
+load "lib/pretty_table.rb"
 
 def main
   db_location = "OURanking.sqlite"
@@ -35,20 +36,27 @@ def main
 
   ## Generate toplist
   db = SQLite3::Database.new db_location
+  db.results_as_hash = true
 
   if type == "iphone" || type == "ipad"
-    result = db.query( "SELECT name, MIN(rank) AS min_position, ROUND(AVG(rank), 3) AS average_position, MAX(rank) AS max_position, count(*) AS number_of_days, ROUND(AVG(rank) / count(*), 3) AS popularity FROM apps WHERE category = ? AND device = ? GROUP BY app_id ORDER BY popularity ASC  LIMIT ?", category, type, limit)
+    result = db.query( "SELECT '' as ind, name, MIN(rank) AS min_position, ROUND(AVG(rank), 3) AS average_position, MAX(rank) AS max_position, count(*) AS number_of_days, ROUND(AVG(rank) / count(*), 3) AS popularity, app_id FROM apps WHERE category = ? AND device = ? GROUP BY app_id ORDER BY popularity ASC  LIMIT ?", category, type, limit)
   else 
-    result = db.query( "SELECT name, MIN(rank) AS min_position, ROUND(AVG(rank), 3) AS average_position, MAX(rank) AS max_position, count(*) AS number_of_days, ROUND(AVG(rank) / count(*), 3) AS popularity FROM apps WHERE category = ? GROUP BY app_id ORDER BY popularity ASC  LIMIT ?", category, limit)
+    result = db.query( "SELECT '' as ind, name, MIN(rank) AS min_position, ROUND(AVG(rank), 3) AS average_position, MAX(rank) AS max_position, count(*) AS number_of_days, ROUND(AVG(rank) / count(*), 3) AS popularity, app_id FROM apps WHERE category = ? GROUP BY app_id ORDER BY popularity ASC  LIMIT ?", category, limit)
   end
 
+  labels = {"ind"=>"#", "name"=> "App Name", "min_position"=> "Lowest position", "average_position"=> "Average position", "max_position"=> "Highest position", "number_of_days"=> "Nr of days", "popularity"=> "Popularity", "app_id"=>"App ID"}
+  table = PrettyTable.new labels
 
-
-
+  i = 1
   result.each do |u|
-    p u
+    new_u = Hash[u.map{|k,v| [k,v.to_s] } ] ## Ensuring all objects are a string
+    new_u["ind"] = i.to_s
+    table.add_line new_u
+
+    i = i + 1
   end
 
+  table.print
 end
 
 main
