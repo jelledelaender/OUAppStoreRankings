@@ -16,7 +16,7 @@ def main
   app_id = ARGV[0]
 
   ## Alternative DB_Location
-  db_location = ARGV[2] if arg_length > 2
+  db_location = ARGV[1] if arg_length > 1
 
   ## App info
   db = SQLite3::Database.new db_location
