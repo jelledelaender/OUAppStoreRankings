@@ -5,6 +5,7 @@ require 'json'
 
 
 class Downloader
+  ## Currently using SensorTower public API as dataset.
 
   def self.download url 
    uri = URI.parse(url)

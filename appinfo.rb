@@ -1,5 +1,15 @@
+# AppInfo.rb
+# 
+# Objective of AppInfo.rb is to give a visualisation of all known data ofa given application.
+# This script can be called with the AppID as parameter, and optional the path of the database.
+# The script will then print all enters, ranking and more which can be used for debugging or analysing entries.
+# 
+# Usage
+# ruby toplist.rb <appid> <optional:DB Location>
+# 
+#
+
 require "sqlite3"
-load "lib/pretty_table.rb"
 
 def main
   db_location = "OURanking.sqlite"

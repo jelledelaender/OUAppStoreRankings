@@ -1,6 +1,7 @@
 # OUAppStoreRankings
 
 Open University - The Netherlands
+
 Software to support for MSc Software Engineer thesis, "Do iOS applications respect your privacy? A case study on popular iPhone apps in Belgium."
 
 ## Intro

@@ -1,3 +1,15 @@
+# TopList.rb
+# 
+# Objective of toplist.rb is to generate top lists for the given database. Default the database location 'OURanking.sqlite' and a limit of 50.
+# Via parameters, the top list can be generated for free, paid or grossing applications and for iPhone,iPad or both app types.
+# It's also possible to process a different database by entering the path of the database as fourth parameter.
+# 
+# Usage
+# ruby toplist.rb <free/paid/grossing> <iphone/ipad/all> <optional:limit> <optional:DB Location>
+# 
+#
+
+
 require "sqlite3"
 load "lib/pretty_table.rb"
 
@@ -5,7 +17,7 @@ def main
   db_location = "OURanking.sqlite"
   limit = 50
 
-  ## Loading data from arguments
+  ## Loading and processing arguments
   arg_length = ARGV.length
   if arg_length < 2 || arg_length > 4
     puts "Incorrect usage."
@@ -34,7 +46,7 @@ def main
   ## Alternative DB_Location
   db_location = ARGV[3] if arg_length > 3
 
-  ## Generate toplist
+  ## Generate toplist for current context
   db = SQLite3::Database.new db_location
   db.results_as_hash = true
 

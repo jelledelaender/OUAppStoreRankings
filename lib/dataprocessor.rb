@@ -46,9 +46,6 @@ class DataProcessor
   end
 
   def process_app(app, category, device)
-   
-    #puts "App: #{app}"
-
     db_structure = [
       @date.to_s,
       app["app_id"],

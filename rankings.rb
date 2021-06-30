@@ -1,3 +1,15 @@
+# Rankings.rb
+# 
+# Objective of rankings.rb is to update the local database by downloading and processing the latest top list of the AppStore
+# Via a parameter,the number of last days to be processed can be indicated.
+# Optionally, it is possible to clear the database and to use a database on a different path.
+# The database must exist and have the correct structure as defined in apps.sql 
+# 
+# Usage
+# ruby rankings.rb <number_of_days> <optional: Clear database {true/false}> <optional: DB Location>
+# 
+#
+
 require 'date'
 load "lib/dataprocessor.rb"
 require "sqlite3"

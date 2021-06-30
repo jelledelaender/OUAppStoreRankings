@@ -1,16 +1,5 @@
 /*
- Navicat Premium Data Transfer
-
- Source Server         : OURanking
- Source Server Type    : SQLite
- Source Server Version : 3012001
- Source Database       : main
-
- Target Server Type    : SQLite
- Target Server Version : 3012001
- File Encoding         : utf-8
-
- Date: 07/31/2020 00:41:47 AM
+ Export of internaldatabase structure used by OUAppStoreRankings
 */
 
 PRAGMA foreign_keys = false;

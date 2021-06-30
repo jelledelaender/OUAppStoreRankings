@@ -1,6 +1,8 @@
 
-## PrettyTable, based on https://stackoverflow.com/questions/28684598/print-an-array-into-a-table-in-ruby
-## With smalll aditions and improvements
+# PrettyTable, based on https://stackoverflow.com/questions/28684598/print-an-array-into-a-table-in-ruby
+# With smalll aditions and improvements
+#
+
 class PrettyTable
 
   @labels
