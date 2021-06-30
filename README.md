@@ -94,3 +94,13 @@ Saved medata is:
 - "apple_watch_enabled" integer,
 - "imessage_enabled" integer,
 - "icon_url" text,
+
+### Default datasets
+
+There is a default dataset with data of 1 May up to 31 July 2020 that can be used to be processed.
+A database of 1 April up to 30 June 2021 is available.
+
+## Warnings
+
+The current datasource used is the public API of SensorTower. This API is public available and data is updated multiple times a day.
+There is an active rate limit.
