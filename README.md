@@ -100,6 +100,26 @@ Saved medata is:
 There is a default dataset with data of 1 May up to 31 July 2020 that can be used to be processed.
 A database of 1 April up to 30 June 2021 is available.
 
+## Definition of popular apps
+
+Apple is providing top lists which reflect the current moment. The exact definition and algorithm used by Apple is unknown and kept as a secret, but based on factors like number of recent downloads, ratings by users, usage data like how long apps are used, how quickly apps are removed again, number of launches a day etc.
+
+Our objective is to make a list of popular applications over a longer time. As the list provided by Apple and other sources are only showing snapshots of the top list, a small algorithm was defined.
+
+Some applications can be on the top list on a very good position like top 5 but only for a couple of days due media attention, while other applications can be on the 20th place but for a month. Which application is more popular?
+
+The initial idea was to calculate a score, based on the position and improving the score based on every day the app is on listed in the top list. This idea was iterated, refined and simplified to the following definition:
+
+We started by defining a `popularity` score. The lower, the more popular we define the application. As a start, we are using the average position of the app in the top lists of the period in scope. On top of this, we divide this number by the number of days the app is in the top list.
+
+This results in a balance of one app being on top 1 for 1 day, and an app on being third position but for at least 3 days.
+
+`SELECT '' as ind, name, MIN(rank) AS min_position, printf('%.3f', AVG(rank)) AS average_position, MAX(rank) AS max_position, count(*) AS number_of_days, printf('%.3f', AVG(rank) / count(*)) AS popularity, app_id FROM apps WHERE category = 'free' GROUP BY app_id ORDER BY popularity ASC  LIMIT 50`
+
+This algorithm can be more refined by taking more aspects into account:
+- Ratings: Improving the poplarity score for apps with an excelent rating. The question is however to which extent the rating influence the popularity. A rating reflects on the user experience and quality, which indirectly will have an impact on the popularity of the app. As this is taken into account indirectly by the top-list position, this factor was excluded on the algorithm
+- Number of periods and durations the app is in the top list: An app that is in the top list for a full week without any interuptions will be considered more popular than an app that managed to be listed 7 times for shorter time over a longer period. This is left for future work and out of scope for now.
+
 ## Warnings
 
 The current datasource used is the public API of SensorTower. This API is public available and data is updated multiple times a day.
