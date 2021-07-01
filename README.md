@@ -120,7 +120,7 @@ This algorithm can be more refined by taking more aspects into account:
 - Ratings: Improving the popularity score for apps with an excellent rating. The question is however to which extent the rating influence the popularity. A rating reflects on the user experience and quality, which indirectly will have an impact on the popularity of the app. As this is taken into account indirectly by the top-list position, this factor was excluded from the algorithm
 - Number of periods and durations the app is in the top list: An app that is in the top list for a full week without any interruptions will be considered more popular than an app that managed to be listed 7 times for a shorter time over a longer period. This is left for future work and out of scope for now.
 
-## Warnings
+## Disclaimer
 
 The current data source used is the public API of SensorTower. This API is publicly available and data is updated multiple times a day.
 There is an active rate limit.
