@@ -46,6 +46,11 @@ class DataProcessor
   end
 
   def process_app(app, category, device)
+
+    if app.count == 0
+      return ## Ignore empty datasets
+    end
+
     db_structure = [
       @date.to_s,
       app["app_id"],
