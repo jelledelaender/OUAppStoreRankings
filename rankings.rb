@@ -42,7 +42,7 @@ def main
   end
 
   if number_of_days > 90
-    puts "Maximal 90 days supported at the moment. Settin to 90 days timespan"
+    puts "Maximal 90 days supported at the moment. Setting to 90 days timespan"
     start_date = end_date.prev_day(90)
   end
 
@@ -59,13 +59,15 @@ def main
 
   date = start_date
   while date <= end_date
+    puts "-------PROCESSING NEW DAY------"
+
     dataProcessor = DataProcessor.new(db, date)
     dataProcessor.process
 
     date = date.next_day
 
+    puts "------ WAITING DUE RATE LIMIT -------"
     sleep(30) ## Adding sleep of 30 sec due strict rate limit
-    puts "-------------"
   end
 
   puts "Finished"
