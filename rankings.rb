@@ -63,6 +63,9 @@ def main
     dataProcessor.process
 
     date = date.next_day
+
+    sleep(30) ## Adding sleep of 30 sec due strict rate limit
+    puts "-------------"
   end
 
   puts "Finished"
