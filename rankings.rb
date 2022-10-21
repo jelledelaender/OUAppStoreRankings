@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 # Rankings.rb
 # 
 # Objective of rankings.rb is to update the local database by downloading and processing the latest top list of the AppStore

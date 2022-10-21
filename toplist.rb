@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 # TopList.rb
 # 
 # Objective of toplist.rb is to generate top lists for the given database. Default the database location 'OURanking.sqlite' and a limit of 50.
