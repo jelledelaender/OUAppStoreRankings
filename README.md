@@ -29,9 +29,6 @@ The third and last parameter is the path to the local database. This is default 
 
 By having a cronjob that runs `ruby rankings.rb 1` daily will result in a dataset that is always up to date.
 
-<img width="1074" alt="Screenshot 2023-03-20 at 11 20 19 PM" src="https://user-images.githubusercontent.com/75109/226478120-bb95c30e-38a1-4fd7-ba02-1900536b0ce7.png">
-
-
 ### Top Lists
 
 Once the database exists with data, the top list script can be used to analyse the database and generate top lists.
@@ -49,6 +46,8 @@ The second parameter allows filtering on iPhone top lists, iPad top lists, or th
 The third and optional parameter can be used to limit the results. The default limit is 50. By defining the limit to 10, the top 10 can be generated.
 
 The last optional parameter is the path to the local database. This is by default `OURanking.sqlite` 
+
+<img width="1074" alt="Screenshot 2023-03-20 at 11 20 19 PM" src="https://user-images.githubusercontent.com/75109/226478120-bb95c30e-38a1-4fd7-ba02-1900536b0ce7.png">
 
 ### App Info
 
