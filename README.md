@@ -130,7 +130,8 @@ SELECT
 	MAX(rank) AS max_position,
 	count(*) AS number_of_days,
 	printf('%.3f', AVG(rank) / count(*)) AS popularity,
-	app_id FROM apps WHERE category = 'free'
+	app_id
+FROM apps WHERE category = 'free'
 GROUP BY app_id
 ORDER BY popularity
 ASC LIMIT 50
