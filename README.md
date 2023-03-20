@@ -123,7 +123,8 @@ To take into account how long an app is on the top list, we divide this number b
 
 This results in a shared score for one app being in position 1 for one day and an app listed at the third position for three days.
 
-```SELECT
+```
+SELECT
 	name, MIN(rank) AS min_position,
 	printf('%.3f', AVG(rank)) AS average_position,
 	MAX(rank) AS max_position,
@@ -132,7 +133,9 @@ This results in a shared score for one app being in position 1 for one day and a
 	app_id FROM apps WHERE category = 'free'
 GROUP BY app_id
 ORDER BY popularity
-ASC LIMIT 50```
+ASC LIMIT 50
+```
+
 
 This algorithm can be more refined by taking more aspects into account:
 - Ratings: Improving the popularity score for apps with excellent ratings. The question is to which extent the rating should influence the popularity score. A rating reflects on the user experience and quality, which indirectly will have an impact on the popularity of the app. As this is taken into account indirectly by the top-list position, this factor was excluded from the algorithm
