@@ -2,7 +2,7 @@
 
 Open University - The Netherlands
 
-Software to support for MSc Software Engineer thesis, "Do iOS applications respects your privacy? A case study on popular iPhone apps in Belgium." by Jelle De Laender.
+Software to support for MSc Software Engineer thesis, "Do iOS applications respect your privacy? A case study on popular iPhone apps in Belgium." by Jelle De Laender.
 
 ## Intro
 
